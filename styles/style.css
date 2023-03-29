@@ -1,5 +1,6 @@
 body {
   background-color: aliceblue;
+  font-size: 10px;
 }
 
 main {
@@ -13,10 +14,15 @@ main {
 
 .container {
   display: flex;
+  gap: 8px;
+  min-width: 1024px;
+  margin: 0 auto;
+}
+#card-user-container {
+  width: 100%;
+  display: flex;
   justify-content: space-between;
   gap: 8px;
-  width: 80%;
-  margin: 0 auto;
 }
 
 .card {
@@ -24,23 +30,83 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  border-radius: 5px;
   padding: 1.25rem;
+}
+.card-user {
+  position: relative;
+  width: 100%;
+  box-shadow: 1px 0px 5px 1px rgba(110, 108, 108, 0.74);
+  -webkit-box-shadow: 1px 0px 5px 1px rgba(110, 108, 108, 0.74);
+  -moz-box-shadow: 1px 0px 5px 1px rgba(110, 108, 108, 0.74);
+  animation: 1.5s fadeIn;
 }
 
 .card img {
+  border-radius: 50%;
   width: 50%;
+  margin-bottom: 14px;
 }
 
 .card p {
-  margin: 12px 0 0;
+  font-size: 16px;
+  margin: 0 0 14px;
 }
 
 .card button {
-  margin-top: 16px;
   cursor: pointer;
+  background-color: #ac9af5;
+  border: none;
+  border-radius: 15px;
+  color: #ffffff;
+  padding: 8px 24px;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .card-add {
-  justify-content: center;
+  justify-content: flex-end;
+  background: transparent;
+  box-shadow: 1px 0px 5px 1px rgba(110, 108, 108, 0.74);
+  -webkit-box-shadow: 1px 0px 5px 1px rgba(110, 108, 108, 0.74);
+  -moz-box-shadow: 1px 0px 5px 1px rgba(110, 108, 108, 0.74);
+  backdrop-filter: blur(13.5px);
+  -webkit-backdrop-filter: blur(13.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  height: 242px;
+}
+.card-add img {
+  cursor: pointer;
+  margin: auto;
+  width: 30%;
+}
+
+#add-new {
+  background-color: transparent;
+  color: rgb(186, 196, 200);
+  text-transform: uppercase;
+}
+
+.card .icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 24px;
+  border-radius: 0%;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation-name: fadeIn;
+  animation-fill-mode: forwards;
 }
