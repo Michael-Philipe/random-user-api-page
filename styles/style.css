@@ -1,0 +1,46 @@
+body {
+  background-color: aliceblue;
+}
+
+main {
+  max-width: 1280px;
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.card {
+  background-color: #fefefe;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1.25rem;
+}
+
+.card img {
+  width: 50%;
+}
+
+.card p {
+  margin: 12px 0 0;
+}
+
+.card button {
+  margin-top: 16px;
+  cursor: pointer;
+}
+
+.card-add {
+  justify-content: center;
+}
