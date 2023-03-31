@@ -1,4 +1,5 @@
 body {
+  font-family: 'Montserrat', sans-serif;
   background-color: aliceblue;
   font-size: 10px;
 }
@@ -32,7 +33,14 @@ main {
   align-items: center;
   border-radius: 5px;
   padding: 1.25rem;
+  height: 280px;
 }
+
+.card-user p:first-of-type {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
 .card-user {
   position: relative;
   width: 100%;
@@ -40,6 +48,7 @@ main {
   -webkit-box-shadow: 1px 0px 5px 1px rgba(110, 108, 108, 0.74);
   -moz-box-shadow: 1px 0px 5px 1px rgba(110, 108, 108, 0.74);
   animation: 1.5s fadeIn;
+  color: #5c5a5a;
 }
 
 .card img {
@@ -49,7 +58,7 @@ main {
 }
 
 .card p {
-  font-size: 16px;
+  font-size: 14px;
   margin: 0 0 14px;
 }
 
@@ -74,7 +83,6 @@ main {
   -webkit-backdrop-filter: blur(13.5px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  /* height: 242px; */
 }
 .card-add img {
   cursor: pointer;
@@ -107,6 +115,7 @@ main {
   height: 100%;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.8);
+  color: rgb(114 104 95);
 }
 
 .modal .content {
@@ -213,14 +222,19 @@ main {
   height: 100%;
   display: flex;
   align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
   padding-bottom: 8px;
   text-transform: capitalize;
   border-bottom: 2px solid darkgray;
 }
 
+.more-info ul li:first-child {
+  margin-top: 8px;
+}
+
 .more-info ul li span {
   text-transform: initial;
-  padding-left: 8px;
   font-size: 1rem;
   color: #4a4a4a;
 }

@@ -1,19 +1,19 @@
 const container = document.getElementById('card-user-container');
 const url = 'https://randomuser.me/api/?results=3';
 const plusIcon = document.getElementById('find-users');
-// let currentAuthor = [];
+const goBackIcon = document.querySelector('.go-back');
 
 //converter para arrow function
 
-function createNode(element) {
+const createNode = (element) => {
   return document.createElement(element);
-}
+};
 
-function append(parent, el) {
+const append = (parent, el) => {
   return parent.appendChild(el);
-}
+};
 
-function getDataFromAPI(url) {
+const getDataFromAPI = (url) => {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
@@ -26,13 +26,34 @@ function getDataFromAPI(url) {
       );
     })
     .catch((error) => console.error(error));
-}
+};
 
-function clearCards() {
+const clearCards = () => {
   container.innerHTML = '';
-}
+};
 
-function DisplayCards(authors) {
+const phoneMask = (value) => {
+  //não vai funcionar certinho para todos os valores pois vao ser de diferentes localizaçoes, ficaria bom com numeros brasileiros
+  if (!value) return '';
+
+  value = value.replace(/\D/g, '');
+  value = value.replace(/(\d{2})(\d)/, '($1) $2');
+  value = value.replace(/(\d)(\d{4})$/, '$1-$2');
+  return value;
+};
+
+const formatDate = (dateReceived) => {
+  let date = new Date(dateReceived);
+  let year = date.getFullYear();
+  let day = date.getDate();
+  let month = date.getMonth() + 1;
+
+  return `${day < 10 ? `0${day}` : day}/${
+    month < 10 ? `0${month}` : month
+  }/${year}`;
+};
+
+const DisplayCards = (authors) => {
   console.log(authors);
   authors.map(function (author) {
     let div = createNode('div');
@@ -52,7 +73,7 @@ function DisplayCards(authors) {
       : (icon.src = './img/mars-solid.svg');
     img.src = author.picture.large;
     name.innerHTML = `${author.name.first} ${author.name.last}`;
-    birthDate.innerHTML = '01/01/2002';
+    birthDate.innerHTML = formatDate(author.dob.date);
     phone.innerHTML = phoneMask(author.phone);
     button.innerHTML = 'View Profile';
     div.addEventListener('click', () => populateModal(author));
@@ -65,26 +86,15 @@ function DisplayCards(authors) {
     append(div, phone);
     append(div, button);
   });
-}
-
-const switchModal = (event) => {
-  const modal = document.querySelector('.modal');
-  const actualStyle = modal.style.display;
-  if (actualStyle === 'block') {
-    modal.style.display = 'none';
-  } else {
-    modal.style.display = 'block';
-  }
 };
 
-const phoneMask = (value) => {
-  //não vai funcionar certinho para todos os valores pois vao ser de diferentes localizaçoes, ficaria bom com numeros brasileiros
-  if (!value) return '';
+const switchModal = () => {
+  const modal = document.querySelector('.modal');
+  const actualStyle = modal.style.display;
 
-  value = value.replace(/\D/g, '');
-  value = value.replace(/(\d{2})(\d)/, '($1) $2');
-  value = value.replace(/(\d)(\d{4})$/, '$1-$2');
-  return value;
+  actualStyle === 'block'
+    ? (modal.style.display = 'none')
+    : (modal.style.display = 'block');
 };
 
 const populateModal = (person) => {
@@ -124,3 +134,5 @@ window.onclick = (e) => {
     switchModal();
   }
 };
+
+goBackIcon.addEventListener('click', switchModal);
