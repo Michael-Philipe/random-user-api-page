@@ -3,8 +3,6 @@ const url = 'https://randomuser.me/api/?results=3';
 const plusIcon = document.getElementById('find-users');
 const goBackIcon = document.querySelector('.go-back');
 
-//converter para arrow function
-
 const createNode = (element) => {
   return document.createElement(element);
 };
@@ -13,23 +11,22 @@ const append = (parent, el) => {
   return parent.appendChild(el);
 };
 
-const getDataFromAPI = (url) => {
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      clearCards();
-      DisplayCards(data.results);
-      const buttonViewProfile = document.querySelectorAll('.trigger');
-
-      buttonViewProfile.forEach((currentButton) =>
-        currentButton.addEventListener('click', switchModal)
-      );
-    })
-    .catch((error) => console.error(error));
+const getRandomInt = (min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min);
 };
 
 const clearCards = () => {
   container.innerHTML = '';
+};
+const switchModal = () => {
+  const modal = document.querySelector('.modal');
+  const actualStyle = modal.style.display;
+
+  actualStyle === 'block'
+    ? (modal.style.display = 'none')
+    : (modal.style.display = 'block');
 };
 
 const phoneMask = (value) => {
@@ -53,9 +50,19 @@ const formatDate = (dateReceived) => {
   }/${year}`;
 };
 
-const DisplayCards = (authors) => {
-  console.log(authors);
-  authors.map(function (author) {
+const getDataFromAPI = (url) => {
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      DisplayCards(data.results);
+    })
+    .catch((error) => console.error(error));
+};
+getDataFromAPI(url);
+
+const DisplayCards = (data) => {
+  clearCards();
+  data.map(function (person) {
     let div = createNode('div');
     let icon = createNode('img');
     let img = createNode('img');
@@ -63,42 +70,38 @@ const DisplayCards = (authors) => {
     let birthDate = createNode('p');
     let phone = createNode('p');
     let button = createNode('button');
+    let figure = createNode('figure');
 
     div.classList.add('card', 'card-user');
 
     icon.classList.add('icon');
+    img.classList.add('profile-img');
     button.classList.add('trigger');
-    author.gender === 'female'
+
+    person.gender === 'female'
       ? (icon.src = './img/venus-solid.svg')
       : (icon.src = './img/mars-solid.svg');
-    img.src = author.picture.large;
-    name.innerHTML = `${author.name.first} ${author.name.last}`;
-    birthDate.innerHTML = formatDate(author.dob.date);
-    phone.innerHTML = phoneMask(author.phone);
+    img.src = person.picture.large;
+    name.innerHTML = `${person.name.first} ${person.name.last}`;
+    birthDate.innerHTML = formatDate(person.dob.date);
+    phone.innerHTML = phoneMask(person.phone);
     button.innerHTML = 'View Profile';
-    div.addEventListener('click', () => populateModal(author));
 
     append(container, div);
     append(div, icon);
-    append(div, img);
+    append(figure, img);
+    append(div, figure);
     append(div, name);
     append(div, birthDate);
     append(div, phone);
     append(div, button);
+
+    div.addEventListener('click', () => populateModal(person));
+    button.addEventListener('click', switchModal);
   });
 };
 
-const switchModal = () => {
-  const modal = document.querySelector('.modal');
-  const actualStyle = modal.style.display;
-
-  actualStyle === 'block'
-    ? (modal.style.display = 'none')
-    : (modal.style.display = 'block');
-};
-
 const populateModal = (person) => {
-  console.log(person);
   const avatar = document.getElementById('avatar');
   const h3 = document.querySelector('.avatar-name');
   const spanLocation = document.querySelector('.location');
@@ -107,6 +110,8 @@ const populateModal = (person) => {
   const spanAge = document.querySelector('.age');
   const spanAddress = document.querySelector('.address');
   const spanUsername = document.querySelector('.username');
+  const followers = document.querySelector('.followers-count');
+  const following = document.querySelector('.following-count');
 
   avatar.src = `${person.picture.large}`;
   h3.innerHTML = `${person.name.first} ${person.name.last}`;
@@ -116,17 +121,13 @@ const populateModal = (person) => {
   spanAge.innerHTML = `${person.dob.age} years`;
   spanAddress.innerHTML = `${person.location.street.name}, ${person.location.street.number}`;
   spanUsername.innerHTML = person.login.username;
-
-  //montar o modal
+  followers.innerHTML = `${getRandomInt(0, 100)},${getRandomInt(100, 999)}`;
+  following.innerHTML = `${getRandomInt(0, 100)},${getRandomInt(100, 999)}`;
 };
 
 plusIcon.addEventListener('click', () => {
   getDataFromAPI(url);
 });
-
-getDataFromAPI(url);
-
-// name, location, country, email, age, phone , picture username?
 
 window.onclick = (e) => {
   const modal = document.querySelector('.modal');
