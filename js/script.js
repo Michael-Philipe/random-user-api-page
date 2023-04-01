@@ -17,9 +17,10 @@ const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min) + min);
 };
 
-const clearCards = () => {
-  container.innerHTML = '';
+const clearElements = (parent) => {
+  parent.innerHTML = '';
 };
+
 const switchModal = () => {
   const modal = document.querySelector('.modal');
   const actualStyle = modal.style.display;
@@ -61,7 +62,7 @@ const getDataFromAPI = (url) => {
 getDataFromAPI(url);
 
 const DisplayCards = (data) => {
-  clearCards();
+  clearElements(container);
   data.map(function (person) {
     let div = createNode('div');
     let icon = createNode('img');
