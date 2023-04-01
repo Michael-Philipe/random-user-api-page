@@ -41,10 +41,10 @@ const phoneMask = (value) => {
 };
 
 const formatDate = (dateReceived) => {
-  let date = new Date(dateReceived);
-  let year = date.getFullYear();
-  let day = date.getDate();
-  let month = date.getMonth() + 1;
+  const date = new Date(dateReceived);
+  const year = date.getFullYear();
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
 
   return `${day < 10 ? `0${day}` : day}/${
     month < 10 ? `0${month}` : month
@@ -64,14 +64,14 @@ getDataFromAPI(url);
 const DisplayCards = (data) => {
   clearElements(container);
   data.map(function (person) {
-    let div = createNode('div');
-    let icon = createNode('img');
-    let img = createNode('img');
-    let name = createNode('p');
-    let birthDate = createNode('p');
-    let phone = createNode('p');
-    let button = createNode('button');
-    let figure = createNode('figure');
+    const div = createNode('div');
+    const icon = createNode('img');
+    const img = createNode('img');
+    const name = createNode('p');
+    const birthDate = createNode('p');
+    const phone = createNode('p');
+    const button = createNode('button');
+    const figure = createNode('figure');
 
     div.classList.add('card', 'card-user');
 
