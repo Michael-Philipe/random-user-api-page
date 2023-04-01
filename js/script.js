@@ -1,6 +1,6 @@
-const container = document.getElementById('card-user-container');
+const container = document.querySelector('#card-user-container');
 const url = 'https://randomuser.me/api/?results=3';
-const plusIcon = document.getElementById('find-users');
+const plusIcon = document.querySelector('#find-users');
 const goBackIcon = document.querySelector('.go-back');
 
 const createNode = (element) => {
@@ -102,7 +102,7 @@ const DisplayCards = (data) => {
 };
 
 const populateModal = (person) => {
-  const avatar = document.getElementById('avatar');
+  const avatar = document.querySelector('#avatar');
   const h3 = document.querySelector('.avatar-name');
   const spanLocation = document.querySelector('.location');
   const spanEmail = document.querySelector('.email');
