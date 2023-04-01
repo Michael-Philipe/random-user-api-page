@@ -33,7 +33,7 @@ main {
   align-items: center;
   border-radius: 5px;
   padding: 1.25rem;
-  height: 280px;
+  min-height: 290px;
 }
 
 .card-user p:first-of-type {
@@ -63,7 +63,7 @@ figure {
   width: 112px;
   height: 112px;
   border-radius: 50%;
-  border: 2px solid #f9f1f1;
+  border: 2px solid #d9dfef;
   margin-bottom: 14px;
   background-color: aliceblue;
 }
@@ -85,7 +85,7 @@ figure {
 }
 
 .card-add {
-  justify-content: flex-end;
+  justify-content: center;
   background: transparent;
   box-shadow: 1px 0px 5px 1px rgba(110, 108, 108, 0.74);
   -webkit-box-shadow: 1px 0px 5px 1px rgba(110, 108, 108, 0.74);
@@ -94,19 +94,33 @@ figure {
   -webkit-backdrop-filter: blur(13.5px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 300px;
 }
 
 .card-add img {
   cursor: pointer;
-  margin: auto;
-  width: 30%;
+  /* margin: auto; */
+  width: 50%;
+  background-color: aliceblue;
+}
+
+.card-add .find-users-container {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  background-color: #fefefe;
+  width: 90px;
+  height: 90px;
+  border: 4px solid #dedede;
+  border-radius: 50%;
 }
 
 #add-new {
   background-color: transparent;
-  color: rgb(186, 196, 200);
+  color: rgb(114 104 95);
   text-transform: uppercase;
   cursor: default;
+  font-size: 0.875rem;
 }
 
 .card .icon {
@@ -126,26 +140,25 @@ figure {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  animation: 0.5s fadeIn;
   background-color: rgba(0, 0, 0, 0.8);
   color: rgb(114 104 95);
 }
 
 .modal .content {
   background-color: #fefefe;
-  margin: 15% auto;
-  /* padding: 20px; */
+  margin: 10% auto;
   border-radius: 5px;
   width: 350px;
-  height: 500px;
+  min-height: 500px;
   font-size: 1.125rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.modal .content header {
-  background-image: url('https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?w=2000');
-
+.modal .content .modal-header {
+  background-image: url('/img/sky.jpg');
   width: 100%;
   height: 75px;
   display: flex;
@@ -172,7 +185,7 @@ figure {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 8px 8px;
+  padding: 0 8px 16px;
   gap: 8px;
 }
 

@@ -21,8 +21,8 @@ const clearElements = (parent) => {
   parent.innerHTML = '';
 };
 
-const switchModal = () => {
-  const modal = document.querySelector('.modal');
+const switchModal = (elementSelector) => {
+  const modal = document.querySelector(elementSelector);
   const actualStyle = modal.style.display;
 
   actualStyle === 'block'
@@ -98,11 +98,12 @@ const DisplayCards = (data) => {
     append(div, button);
 
     div.addEventListener('click', () => populateModal(person));
-    button.addEventListener('click', switchModal);
+    button.addEventListener('click', () => switchModal('.modal'));
   });
 };
 
 const populateModal = (person) => {
+  const headerModal = document.querySelector('.modal-header');
   const avatar = document.querySelector('#avatar');
   const h3 = document.querySelector('.avatar-name');
   const spanLocation = document.querySelector('.location');
@@ -124,6 +125,10 @@ const populateModal = (person) => {
   spanUsername.innerHTML = person.login.username;
   followers.innerHTML = `${getRandomInt(0, 100)},${getRandomInt(100, 999)}`;
   following.innerHTML = `${getRandomInt(0, 100)},${getRandomInt(100, 999)}`;
+
+  person.gender === 'male'
+    ? (headerModal.style.backgroundPosition = 'bottom')
+    : (headerModal.style.backgroundPosition = 'center');
 };
 
 plusIcon.addEventListener('click', () => {
@@ -133,8 +138,8 @@ plusIcon.addEventListener('click', () => {
 window.onclick = (e) => {
   const modal = document.querySelector('.modal');
   if (e.target === modal) {
-    switchModal();
+    switchModal('.modal');
   }
 };
 
-goBackIcon.addEventListener('click', switchModal);
+goBackIcon.addEventListener('click', () => switchModal('.modal'));
