@@ -57,7 +57,9 @@ const getDataFromAPI = (url) => {
     .then((data) => {
       DisplayCards(data.results);
     })
-    .catch((error) => console.error(error));
+    .catch((error) => {
+      console.error(error);
+    });
 };
 getDataFromAPI(url);
 
